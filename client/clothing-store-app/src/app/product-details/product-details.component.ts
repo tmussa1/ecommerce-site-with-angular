@@ -10,6 +10,8 @@ import { ProductServiceService} from '../../app/product-service.service';
 export class ProductDetailsComponent implements OnInit {
 
   product = {};
+  cart = {};
+  totalPrice : number;
   id : string;
 
   constructor(private activatedRoute : ActivatedRoute,
@@ -20,7 +22,30 @@ export class ProductDetailsComponent implements OnInit {
 
     this.productService.getAProduct(this.id).subscribe((incomingProduct) =>{
       this.product = incomingProduct;
+      this.cart = {name: incomingProduct["name"],
+                   price: incomingProduct["price"],
+                   description: incomingProduct["description"],
+                   quantity: 1
+      };
+      this.totalPrice = parseInt(this.cart["price"]) * parseInt(this.cart["quantity"]);
+      //this.saveItemToCart(this.cart);
     })
+  }
+
+  updateQuantity(aform){
+    this.cart["quantity"] = parseInt(aform.value.quantity);
+    this.totalPrice = parseInt(this.cart["price"]) * parseInt(aform.value.quantity);
+    this.saveItemToCart(this.cart);
+  }
+
+  saveItemToCart(item){
+    this.productService.addItemToCart(item).subscribe(item => {
+        console.log(item);
+    })
+  }
+
+  removeItems(bform){
+    console.log(bform.value);
   }
 
 }

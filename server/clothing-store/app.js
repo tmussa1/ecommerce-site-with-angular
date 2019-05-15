@@ -6,7 +6,7 @@ var logger = require('morgan');
 require('dotenv').config();
 var indexRouter = require('./routes/index');
 var productsRouter = require('./routes/productsAPI');
-
+var cartRouter = require('./routes/cartsAPI');
 var bodyParser = require('body-parser');
 var app = express();
 var mongoose= require('mongoose');
@@ -32,6 +32,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/', indexRouter);
 app.use('/products', productsRouter);
+app.use('/cart', cartRouter);
 
 app.use(function(req, res, next) {
   next(createError(404));
