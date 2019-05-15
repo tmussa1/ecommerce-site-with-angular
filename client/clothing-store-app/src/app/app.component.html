@@ -1,0 +1,39 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">SAMI</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/about">About Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/products/list">Products</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/subscribe"> <img src="../assets/images/notification.jpg" width="25px" height="25px"> Subscribe</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="/cart"><img src='../assets/images/cart.jpg' width="25px" height="25px">My Cart</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+<div class="container">
+    <router-outlet></router-outlet>
+</div>
+
+<footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; SAMI Online Store 2019</p>
+    </div>
+  </footer>
+
+
