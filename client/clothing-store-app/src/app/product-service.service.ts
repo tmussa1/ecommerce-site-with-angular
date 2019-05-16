@@ -16,14 +16,18 @@ export class ProductServiceService {
     return this.http.get(this.baseUrl + "products/" + id);
   }
 
-  removeItemFromCart(id){
-    return this.http.delete("http://localhost:3000/cart/" + id);
+  removeAllItemsFromCart(){
+    return this.http.delete("http://localhost:3000/cart/");
   }
 
   addItemToCart(item){
     const options = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
 
     return this.http.post("http://localhost:3000/cart/addToCart", item);
+  }
+
+  getItemsInCart(){
+    return this.http.get("http://localhost:3000/cart/");
   }
 
   constructor(private http: HttpClient) { }

@@ -17,6 +17,14 @@ router.use((req,res,next)=>{
     next();
 });
 
+router.get('/', (req, res, next) =>{
+    CartService.getAllItemsInCart()
+    .then((items) =>{
+        res.status(200);
+        res.json(items);
+    });
+});
+
 router.post('/addToCart', (req, res, next)=>{
     
     //console.log(req.body);
@@ -25,12 +33,16 @@ router.post('/addToCart', (req, res, next)=>{
     var price = parseInt(req.body.price);
     var quantity = parseInt(req.body.quantity);
     var description = req.body.description;
+    var imageUrl = req.body.imageUrl;
+    var subtotal = req.body.subtotal;
 
     var cartItem = new Cart({
         name: name,
         price: price,
         description: description,
-        quantity: quantity
+        quantity: quantity,
+        imageUrl: imageUrl,
+        subtotal: subtotal
     });
 
     CartService.addItemToCart(cartItem) 
@@ -50,6 +62,17 @@ router.delete('/:item_id', (req, res, next)=>{
     .then((item)=>{
         res.status(200);
         res.json(item);
+    }).catch((err) =>{
+        res.send(JSON.stringify(err));
+    });
+  });
+
+  router.delete('/', (req,res, next)=>{
+
+    CartService.removeAllItemsFromCart()
+    .then((items)=>{
+        res.status(200);
+        res.json(items);
     }).catch((err) =>{
         res.send(JSON.stringify(err));
     });

@@ -1,10 +1,16 @@
 <h1>Subscribe for promotions and updates</h1>
 <h4 style="color:grey">Don't miss out on opportunities to save</h4>
-<form action="/products" class="mt-5 mb-5">
+<form #myform="ngForm" (ngSubmit)="saveNotification(myform)" class="mt-5 mb-5">
   <div class="form-row">
     <div class="form-group col-md-6 mb-3">
       <label >Email</label>
-      <input type="email" class="form-control" placeholder="Email">
+      <input type="email" class="form-control" placeholder="Email" name="email" #email="ngModel" 
+      [(ngModel)]="emailStr" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+    </div>
+    <div *ngIf="!email.valid" class="alert alert-danger">
+      <div *ngIf="email.errors && email.errors.pattern">
+        Please enter a valid email address.
+      </div>
     </div>
     <div class="form-group col-md-6">
       <label>How did you hear about us? </label>
@@ -13,7 +19,11 @@
   </div>
   <div class="form-group">
     <label >Address</label>
-    <input type="text" class="form-control"  placeholder="1234 Main St">
+    <input type="text" class="form-control"  placeholder="1234 Main St" name="address"
+     #address="ngModel" [(ngModel)]="addressStr" required>
+  </div>
+  <div *ngIf="address.touched && address.errors?.required" class="alert alert-danger">
+    Address is a required field.
   </div>
   <div class="form-group">
     <label for="inputAddress2">Address 2</label>

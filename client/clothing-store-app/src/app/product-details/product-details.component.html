@@ -1,4 +1,4 @@
-<form #aform="ngForm" (ngSubmit)="updateQuantity(aform)">
+<form (ngSubmit)="updateQuantity()">
 <div class="container" style="margin-top: 150px; margin-bottom: 150px;">
 	<table id="cart" class="table table-hover table-condensed">
     				<thead>
@@ -11,10 +11,10 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td data-th="Product">
+						<tr *ngFor="let cart of cartArray; let i=index">
+							<td data-th="Product" >
 								<div class="row">
-									<div class="col-sm-2 hidden-xs"><img [src]="'http://198.211.113.201:8080' + product.imageUrl" width="75px" height="75px" class="img-responsive"/></div>
+									<div class="col-sm-2 hidden-xs"><img [src]="'http://198.211.113.201:8080' + cart.imageUrl" width="75px" height="75px" class="img-responsive"/></div>
 									<div class="col-sm-10">
 										<h4 class="nomargin">{{cart.name}}</h4>
 										<p>{{cart.description}}</p>
@@ -23,9 +23,9 @@
 							</td>
 							<td data-th="Price">{{cart.price}}</td>
 							<td data-th="Quantity">
-								<input type="number" class="form-control text-center" [ngModel]="cart.quantity" name="quantity">
+								<input type="number" class="form-control text-center" [(ngModel)]="cart.quantity" name="quantity" >
 							</td>
-							<td data-th="Subtotal" class="text-center">{{totalPrice}}</td>
+							<td data-th="Subtotal" class="text-center">{{cart.subtotal}}</td>
 							<td class="actions" data-th="">
 								<button class="btn btn-info btn-sm"><i class="fa fa-refresh"></i></button>
 								<button class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>								
@@ -46,7 +46,6 @@
 				</table>
 </div>
 </form>
-<form #bform="ngForm" (ngSubmit)="removeItems(bform)">
-	<input type="hidden" name="_id" [ngModel]="cart._id">
+<form #bform="ngForm" (ngSubmit)="removeItems()">
 	<button type="submit" class="btn btn-danger" style="margin-bottom:300px; margin-left: 965px;">Empty my cart</button>
 </form>

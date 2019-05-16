@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-subscribe',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SubscribeComponent implements OnInit {
 
-  constructor() { }
+  emailStr : string = "";
+  addressStr: string = " ";
+
+  constructor(private router : Router) { }
 
   ngOnInit() {
+  }
+
+  saveNotification(form){
+    this.emailStr = form.value.email;
+    this.addressStr = form.value.address;
+
+    if(this.addressStr.length != 0 && this.emailStr.length != 0){
+        this.router.navigate(['/notification']);
+    }
   }
 
 }

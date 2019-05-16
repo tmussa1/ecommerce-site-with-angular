@@ -11,6 +11,8 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { AboutComponent } from './about/about.component';
 import { SubscribeComponent } from './subscribe/subscribe.component';
 import { EmptyCartComponent } from './empty-cart/empty-cart.component';
+import { ConfirmationComponent } from './confirmation/confirmation.component';
+import { NotificationComponent } from './notification/notification.component';
 
 
 @NgModule({
@@ -21,7 +23,9 @@ import { EmptyCartComponent } from './empty-cart/empty-cart.component';
     HomepageComponent,
     AboutComponent,
     SubscribeComponent,
-    EmptyCartComponent
+    EmptyCartComponent,
+    ConfirmationComponent,
+    NotificationComponent
   ],
   imports: [
     BrowserModule,

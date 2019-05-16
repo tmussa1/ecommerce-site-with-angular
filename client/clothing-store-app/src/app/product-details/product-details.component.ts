@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute} from '@angular/router';
+import { ActivatedRoute, Router} from '@angular/router';
 import { ProductServiceService} from '../../app/product-service.service';
 
 @Component({
@@ -10,11 +10,12 @@ import { ProductServiceService} from '../../app/product-service.service';
 export class ProductDetailsComponent implements OnInit {
 
   product = {};
-  cart = {};
+  newItem = {};
+  cartArray : any = [];
   totalPrice : number;
   id : string;
-
-  constructor(private activatedRoute : ActivatedRoute,
+   
+  constructor(private activatedRoute : ActivatedRoute, private router : Router,
     private productService : ProductServiceService) { }
 
   ngOnInit() {
@@ -22,30 +23,68 @@ export class ProductDetailsComponent implements OnInit {
 
     this.productService.getAProduct(this.id).subscribe((incomingProduct) =>{
       this.product = incomingProduct;
-      this.cart = {name: incomingProduct["name"],
+      this.newItem ={ name: incomingProduct["name"],
                    price: incomingProduct["price"],
                    description: incomingProduct["description"],
-                   quantity: 1
+                   quantity: 1,
+                   imageUrl: incomingProduct['imageUrl'],
+                   subtotal: incomingProduct["price"]
       };
-      this.totalPrice = parseInt(this.cart["price"]) * parseInt(this.cart["quantity"]);
-      //this.saveItemToCart(this.cart);
+
+      this.saveItemToCart(this.newItem);
+      this.calculateTotal();
     })
+    this.fetchItemsInCart();
   }
 
   updateQuantity(aform){
-    this.cart["quantity"] = parseInt(aform.value.quantity);
-    this.totalPrice = parseInt(this.cart["price"]) * parseInt(aform.value.quantity);
-    this.saveItemToCart(this.cart);
+    this.calculateTotal();
+    this.router.navigate(['/confirmation']);
   }
 
   saveItemToCart(item){
-    this.productService.addItemToCart(item).subscribe(item => {
-        console.log(item);
+    var found = false;
+
+    for(var i = 0; i < this.cartArray.length; i ++){
+      if(this.cartArray[i].name == item.name){
+          found = true;
+      }
+    }
+
+    if(!found){
+      this.productService.addItemToCart(item).subscribe(item => {
+          this.fetchItemsInCart();
+          return item;
+      })
+  }
+  }
+
+  removeItems(){
+    this.productService.removeAllItemsFromCart().subscribe(items =>{
+      this.fetchItemsInCart();
+      this.router.navigate(['/empty']);
     })
   }
 
-  removeItems(bform){
-    console.log(bform.value);
+  calculateTotal() {
+    var total = 0;
+    for(var i = 0; i < this.cartArray.length; i++){
+        this.cartArray[i].subtotal = this.cartArray[i].quantity * this.cartArray[i].price;
+        total += this.cartArray[i].quantity * this.cartArray[i].price;
+    }
+    this.totalPrice = total;
+  }
+
+  fetchItemsInCart(){
+    return this.productService.getItemsInCart().subscribe((cartItems) =>{
+      this.cartArray = cartItems;
+    })
+  }
+
+  navigateToEmptyCart(){
+    if(this.cartArray == undefined && this.cartArray.length == 0){
+      this.router.navigate(['/empty']);
+    }
   }
 
 }

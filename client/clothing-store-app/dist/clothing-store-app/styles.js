@@ -557,7 +557,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Tofik Mussa\Desktop\MS in CS\CSCI E-31\E31-Projects\assignment-6\assignment-6-tmussa1\clothing-store-app\src\styles.css */"./src/styles.css");
+module.exports = __webpack_require__(/*! C:\Users\Tofik Mussa\Desktop\MS in CS\CSCI E-31\E31-Projects\assignment-7\client\clothing-store-app\src\styles.css */"./src/styles.css");
 
 
 /***/ })

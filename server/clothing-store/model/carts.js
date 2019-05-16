@@ -4,7 +4,9 @@ var cartSchema = new mongoose.Schema({
     name: 'string',
     price: 'number',
     description: 'string',
-    quantity: 'number'
+    quantity: 'number',
+    imageUrl: 'string',
+    subtotal: 'string'
 });
 
 var Cart = mongoose.model('Cart', cartSchema);
