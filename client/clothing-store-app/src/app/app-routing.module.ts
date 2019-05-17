@@ -10,7 +10,7 @@ import { ConfirmationComponent } from '../app/confirmation/confirmation.componen
 import { NotificationComponent } from '../app/notification/notification.component';
 
 const routes: Routes = [{path: '', component: HomepageComponent},
-{path: 'products/list', component: ProductsListComponent},
+{path: 'productslist', component: ProductsListComponent},
 {path: 'about', component: AboutComponent},
 {path: 'subscribe', component: SubscribeComponent},
 {path: 'products/:id', component: ProductDetailsComponent},
