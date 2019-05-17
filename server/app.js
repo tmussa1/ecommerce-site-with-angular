@@ -31,7 +31,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // app.use('/', indexRouter);
 
-app.use('/', express.static('../../client/dist'));
+app.use('/', express.static('../client/dist'));
 app.use('/products', productsRouter);
 app.use('/api/cart', cartRouter);
 
