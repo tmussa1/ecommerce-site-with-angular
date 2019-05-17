@@ -26,11 +26,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use('/uploads' , express.static(path.join(__dirname, 'uploads')));
-app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use('/', indexRouter);
+// app.use('/', indexRouter);
+
+app.use('/', express.static('../../client/clothing-store-app/dist'));
 app.use('/products', productsRouter);
 app.use('/cart', cartRouter);
 
