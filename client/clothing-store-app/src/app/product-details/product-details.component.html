@@ -40,12 +40,17 @@
 							<td><a href="/products/list" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
 							<td colspan="2" class="hidden-xs"></td>
 							<td class="hidden-xs text-center"><strong>Total {{totalPrice}}</strong></td>
-							<td><button type="submit" class="btn btn-success btn-block">Checkout <i class="fa fa-angle-right"></i></button></td>
+							<td><button type="submit" class="btn btn-primary btn-block" Style="width: 150px;">Calculate Total<i class="fa fa-angle-right"></i></button></td>
 						</tr>
 					</tfoot>
 				</table>
 </div>
 </form>
-<form #bform="ngForm" (ngSubmit)="removeItems()">
-	<button type="submit" class="btn btn-danger" style="margin-bottom:300px; margin-left: 965px;">Empty my cart</button>
-</form>
+
+<div class="row" style="margin-bottom: 200px;">
+		<div class="col-sm-12 text-center">
+			 <button class="btn btn-danger btn-md center-block" Style="width: 150px;" (click)="removeItems()" >Empty My Cart</button>
+			 <div class="divider" style=" width:800px; height:auto; display:inline-block;"></div>
+			 <button class="btn btn-success btn-md center-block" Style="width: 100px;" (click)="checkOut()" >Check Out </button>
+		 </div>
+</div>

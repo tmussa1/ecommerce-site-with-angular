@@ -37,9 +37,8 @@ export class ProductDetailsComponent implements OnInit {
     this.fetchItemsInCart();
   }
 
-  updateQuantity(aform){
+  updateQuantity(){
     this.calculateTotal();
-    this.router.navigate(['/confirmation']);
   }
 
   saveItemToCart(item){
@@ -73,6 +72,10 @@ export class ProductDetailsComponent implements OnInit {
         total += this.cartArray[i].quantity * this.cartArray[i].price;
     }
     this.totalPrice = total;
+  }
+
+  checkOut(){
+    this.router.navigate(['/confirmation']);
   }
 
   fetchItemsInCart(){
