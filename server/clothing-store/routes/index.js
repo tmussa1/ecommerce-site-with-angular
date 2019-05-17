@@ -4,7 +4,7 @@ var Product = require('../model/products.js')
 var productsController = require('../controller/productController.js');
 var ProductService = productsController.ProductService;
 
-router.get('/', (req, res, next) =>{
+router.get('/index', (req, res, next) =>{
 
   ProductService.listProducts()
   .then((products) =>{

@@ -875,7 +875,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Tofik Mussa\Desktop\MS in CS\CSCI E-31\E31-Projects\assignment-7\client\clothing-store-app\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! C:\Users\Tofik Mussa\Desktop\MS in CS\CSCI E-31\E31-Projects\assignment-7\client\src\main.ts */"./src/main.ts");
 
 
 /***/ })
