@@ -658,14 +658,14 @@ var ProductServiceService = /** @class */ (function () {
         return this.http.get(this.baseUrl + "products/" + id);
     };
     ProductServiceService.prototype.removeAllItemsFromCart = function () {
-        return this.http.delete(this.baseUrl + "cart/");
+        return this.http.delete(this.baseUrl + "api/cart/");
     };
     ProductServiceService.prototype.addItemToCart = function (item) {
         var options = { headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({ 'Content-Type': 'application/json' }) };
-        return this.http.post(this.baseUrl + "cart/addToCart", item);
+        return this.http.post(this.baseUrl + "api/cart/addToCart", item);
     };
     ProductServiceService.prototype.getItemsInCart = function () {
-        return this.http.get(this.baseUrl + "cart/");
+        return this.http.get(this.baseUrl + "api/cart/");
     };
     ProductServiceService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({

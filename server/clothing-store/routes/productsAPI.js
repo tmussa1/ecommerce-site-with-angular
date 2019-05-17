@@ -56,11 +56,13 @@ router.post('/addProduct', upload.single('imageUrl'), (req, res, next)=>{
 //Get by id
 router.get('/:product_id', (req, res, next) =>{
     var id = req.params.product_id;
-    return ProductService.getAProduct(id)
+    ProductService.getAProduct(id)
         .then((product) =>{
             res.status(200);
             res.json(product);
-        })
+        }).catch((err) => {
+            res.send(JSON.stringify(err));
+        });
 });
 
 //Update Product

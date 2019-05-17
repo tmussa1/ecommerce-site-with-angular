@@ -17,17 +17,17 @@ export class ProductServiceService {
   }
 
   removeAllItemsFromCart(){
-    return this.http.delete(this.baseUrl + "cart/");
+    return this.http.delete(this.baseUrl + "api/cart/");
   }
 
   addItemToCart(item){
     const options = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
 
-    return this.http.post(this.baseUrl + "cart/addToCart", item);
+    return this.http.post(this.baseUrl + "api/cart/addToCart", item);
   }
 
   getItemsInCart(){
-    return this.http.get(this.baseUrl + "cart/");
+    return this.http.get(this.baseUrl + "api/cart/");
   }
 
   constructor(private http: HttpClient) { }
